@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Four AI Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Connect Four AI Platform</h1>
+        <div id="panel">
+            <label for="difficulty">AI Level: </label>
+            <select id="difficulty">
+                <option value="Easy">Easy (Random)</option>
+                <option value="Medium">Medium (Rule-Based)</option>
+                <option value="Hard" selected>Hard (Minimax)</option>
+            </select>
+            <button id="reset-btn">Restart Game</button>
+        </div>
+        <h2 id="status">Your Turn! Click a column slot to drop a piece.</h2>
+        <div id="board"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+</body>
+</html>
