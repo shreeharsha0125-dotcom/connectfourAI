@@ -1,41 +1,176 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
 body {
-    background-color: #181c24;
-    color: #ecf0f1;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #0f172a;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Main Container */
+#game-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Heading */
+h1 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+/* Control Panel */
+#panel {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
 }
-#game-container { text-align: center; }
-#panel { margin-bottom: 25px; }
-select, button {
-    padding: 8px 12px;
-    font-size: 1rem;
-    border-radius: 4px;
+
+/* Difficulty Dropdown */
+#difficulty {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
     border: none;
-    margin: 0 10px;
-    cursor: pointer;
+    outline: none;
 }
-button { background-color: #3498db; color: white; font-weight: bold; }
-button:hover { background-color: #2980b9; }
+
+/* Restart Button */
+#reset-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #3498db;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#reset-btn:hover {
+    background: #2980b9;
+}
+
+/* Status Text */
+#status {
+    margin: 20px 0;
+    font-size: 1.4rem;
+    min-height: 40px;
+}
+
+/* Connect Four Board */
 #board {
     display: grid;
-    grid-template-columns: repeat(7, 75px);
-    grid-gap: 12px;
-    background-color: #2b4cc4;
-    padding: 15px;
-    border-radius: 12px;
-    display: inline-grid;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    grid-template-columns: repeat(7, 1fr);
+
+    gap: 5px;
+
+    width: min(95vw, 700px);
+
+    margin: auto;
+    padding: 10px;
+
+    background: #3049c9;
+    border-radius: 15px;
+
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
+
+/* Cells */
 .cell {
-    width: 75px;
-    height: 75px;
-    background-color: #13171e;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+
     border-radius: 50%;
+    background: #0b1220;
+
     cursor: pointer;
+
+    transition: transform 0.2s ease;
 }
-.cell.player-human { background-color: #e74c3c; } /* Red */
-.cell.player-ai { background-color: #f1c40f; }    /* Yellow */
+
+.cell:hover {
+    transform: scale(1.05);
+}
+
+/* Player Piece */
+.player {
+    background: #ff3b30;
+}
+
+/* AI Piece */
+.ai {
+    background: #ffd60a;
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+
+    #game-container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #status {
+        font-size: 1rem;
+        padding: 0 10px;
+    }
+
+    #panel {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #difficulty,
+    #reset-btn {
+        width: 90%;
+        max-width: 320px;
+    }
+
+    #board {
+        width: 95vw;
+        padding: 6px;
+        gap: 4px;
+    }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    #status {
+        font-size: 0.9rem;
+    }
+
+    #board {
+        width: 98vw;
+        padding: 4px;
+        gap: 3px;
+    }
+
+    #difficulty,
+    #reset-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
