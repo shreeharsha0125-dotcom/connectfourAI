@@ -3,24 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Connect Four AI Dashboard</title>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
+
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#2196f3">
+
+    <!-- iOS Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Connect Four AI">
+
+    <!-- App Icon -->
+    <link rel="icon" href="{{ url_for('static', filename='icon-192.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='icon-192.png') }}">
+
+    <!-- Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
     <div id="game-container">
         <h1>Connect Four AI Platform</h1>
+
         <div id="panel">
-            <label for="difficulty">AI Level: </label>
+            <label for="difficulty">AI Level:</label>
+
             <select id="difficulty">
                 <option value="Easy">Easy (Random)</option>
                 <option value="Medium">Medium (Rule-Based)</option>
                 <option value="Hard" selected>Hard (Minimax)</option>
             </select>
+
             <button id="reset-btn">Restart Game</button>
         </div>
-        <h2 id="status">Your Turn! Click a column slot to drop a piece.</h2>
+
+        <h2 id="status">
+            Your Turn! Click a column slot to drop a piece.
+        </h2>
+
         <div id="board"></div>
     </div>
+
+    <!-- Game Logic -->
     <script src="{{ url_for('static', filename='js/game.js') }}"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker
+                    .register('/static/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker Registered:', registration);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker Registration Failed:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
